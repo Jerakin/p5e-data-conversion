@@ -25,7 +25,7 @@ def __convert(_input, file_name, key):
                 if file_name in MERGE_DATA and name in MERGE_DATA[file_name]:
                     util.merge(json_data[name], MERGE_DATA[file_name][name])
 
-    with open(util.OUTPUT / (file_name + ".json"), "w", encoding="utf-8") as f:
+    with open(util.Paths.OUTPUT / (file_name + ".json"), "w", encoding="utf-8") as f:
         json.dump(json_data, f, indent="  ", ensure_ascii=False, sort_keys=True)
 
 

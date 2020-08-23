@@ -19,10 +19,10 @@ DATA_SHEETS = ["IDATA", "MDATA", "PDATA", "TDATA"]
 
 
 def save_worksheet(worksheet):
-    if not util.DATA.exists():
-        util.DATA.mkdir(parents=True)
+    if not util.Paths.DATA.exists():
+        util.Paths.DATA.mkdir(parents=True)
 
-    output_file = Path(util.DATA) / (worksheet.title + ".csv")
+    output_file = Path(util.Paths.DATA) / (worksheet.title + ".csv")
 
     with open(output_file, "w", encoding="utf-8") as f:
         writer = csv.writer(f, delimiter=",", quotechar='"')
@@ -56,7 +56,7 @@ def main(cred_file):
         if worksheet.title in DATA_SHEETS:
             save_worksheet(worksheet)
     logging.info("Finished downloading spreadsheets")
-    return util.DATA
+    return util.Paths.DATA
 
 
 if __name__ == '__main__':

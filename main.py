@@ -1,6 +1,7 @@
 from pathlib import Path
 import sys
 import logging
+import argparse
 
 from gspread.exceptions import SpreadsheetNotFound
 
@@ -15,6 +16,7 @@ except ModuleNotFoundError:
     import converters.moves as moves
     import converters.pokemon as pokemon
     import util.fetch_data as fetch
+    import util.util as util
 
 data_sheets = {
     "IDATA.csv": other.convert_idata,    # Items
@@ -25,20 +27,49 @@ data_sheets = {
 
 
 def convert_all(folder):
-    for file_path in Path(folder).iterdir():
+    folder = Path(folder)
+    if not folder.exists():
+        logging.error(f"Could not find data folder, aborting")
+        sys.exit(1)
+    if not util.Paths.OUTPUT.exists():
+        util.Paths.OUTPUT.mkdir()
+        util.Paths.MOVES_OUTPUT.mkdir()
+        util.Paths.POKEMON_OUTPUT.mkdir()
+
+    for file_path in folder.iterdir():
         if file_path.name in data_sheets:
             logging.debug(f"Starting converting {file_path.stem}")
             data_sheets[file_path.name](file_path)
             logging.debug(f"Finished converting {file_path.stem}")
 
 
+def _cli_options():
+    parser = argparse.ArgumentParser(description="Commandline tool to download Defold's Bob")
+    optional = parser._action_groups.pop()
+    optional.add_argument('-k', '--keep-dice', action='store_true', dest="keep_dice")
+    optional.add_argument('-o', '--output', dest="output", help="Custom output directory")
+
+    required = parser.add_argument_group("required arguments")
+    required.add_argument('token', nargs="?",
+                          help="File containing gspread token (or path to folder with downloaded Data)")
+
+    parser._action_groups.append(optional)
+
+    return parser
 
 
-if __name__ == '__main__':
-    logging.getLogger().setLevel(logging.DEBUG)
-    logging.info("Convertion started")
-    if len(sys.argv) == 2:
-        argument = Path(sys.argv[1])
+def _run_cli():
+    parser = _cli_options()
+    options = parser.parse_args()
+    util.update_options({"remove_dice": not options.keep_dice, "output": options.token if options.token else False})
+
+    if not options.token:
+        if (Path(__file__).parent / "data").exists:
+            convert_all(Path(__file__).parent / "data")
+        else:
+            logging.warning("Please provide either a access file or a folder with the Download DATA sheets in")
+    else:
+        argument = Path(options.token)
         if argument.exists():
             if argument.is_file() and argument.suffix == ".json":
                 try:
@@ -52,9 +83,21 @@ if __name__ == '__main__':
                 convert_all(argument)
             else:
                 logging.error("Access file or folder not found, please provide a valid path")
-    else:
-        if (Path(__file__).parent / "data").exists:
-            convert_all(Path(__file__).parent / "data")
-        else:
-            logging.warning("Please provide either a access file or a folder with the Download DATA sheets in")
-    logging.info("Convertion finished")
+
+    logging.info("Conversion finished")
+
+
+def main():
+    logging.getLogger().setLevel(logging.DEBUG)
+    logging.info("Conversion started")
+    try:
+        _run_cli()
+    except KeyboardInterrupt:
+        logging.warning("Conversion aborted")
+        sys.exit()
+    except:
+        raise
+
+
+if __name__ == '__main__':
+    main()

@@ -152,7 +152,7 @@ class Pokemon:
 
     def save(self):
         name = clean_file_name(self.name)
-        with (util.POKEMON_OUTPUT / (name + ".json")).open("w", encoding="utf-8") as fp:
+        with (util.Paths.POKEMON_OUTPUT / (name + ".json")).open("w", encoding="utf-8") as fp:
             json.dump(util.clean_dict(self.output_data), fp, ensure_ascii=False, indent="  ", sort_keys=True)
 
 
@@ -211,7 +211,7 @@ class Evolve:
             util.merge(self.output_data[species], util.MERGE_EVOLVE_DATA[species])
 
     def save(self):
-        with (util.OUTPUT / "evolve.json").open("w", encoding="utf-8") as fp:
+        with (util.Paths.OUTPUT / "evolve.json").open("w", encoding="utf-8") as fp:
             json.dump(self.output_data, fp, ensure_ascii=False, indent="  ")
 
 
@@ -242,7 +242,7 @@ class IndexOrder:
         self.output_data[value].append(species)
 
     def save(self):
-        with (util.OUTPUT / "index_order.json").open("w", encoding="utf-8") as fp:
+        with (util.Paths.OUTPUT / "index_order.json").open("w", encoding="utf-8") as fp:
             json.dump(self.output_data, fp, ensure_ascii=False, indent="  ")
 
 
@@ -265,7 +265,7 @@ class FilterData:
             util.merge(self.output_data[species], util.MERGE_FILTER_DATA[species])
 
     def save(self):
-        with (util.OUTPUT / "filter_data.json").open("w", encoding="utf-8") as fp:
+        with (util.Paths.OUTPUT / "filter_data.json").open("w", encoding="utf-8") as fp:
             json.dump(self.output_data, fp, ensure_ascii=False, indent="  ")
 
 
@@ -308,4 +308,4 @@ def convert_pdata(input_csv, header=DEFAULT_HEADER):
 
 
 if __name__ == '__main__':
-    convert_pdata(util.DATA / "PDATA.csv")
+    convert_pdata(util.Paths.DATA / "PDATA.csv")

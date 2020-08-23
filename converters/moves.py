@@ -126,16 +126,16 @@ class Move:
         return {}
 
     def save(self):
-        if not util.MOVES_OUTPUT.exists():
-            util.MOVES_OUTPUT.mkdir()
-        with (util.MOVES_OUTPUT / (self.name +".json")).open("w", encoding="utf-8") as fp:
+        if not util.Paths.MOVES_OUTPUT.exists():
+            util.Paths.MOVES_OUTPUT.mkdir()
+        with (util.Paths.MOVES_OUTPUT / (self.name +".json")).open("w", encoding="utf-8") as fp:
             json.dump(util.clean_dict(self.output_data), fp, ensure_ascii=False, indent="  ", sort_keys=True)
 
 
 def convert_mdata(input_csv, header=DEFAULT_HEADER):
     move_list = {}
     # Export the error move
-    with open(util.MOVES_OUTPUT / "Error.json", "w", encoding="utf-8") as fp:
+    with open(util.Paths.MOVES_OUTPUT / "Error.json", "w", encoding="utf-8") as fp:
         json.dump(error_move, fp, ensure_ascii=False, indent="  ", sort_keys=False)
 
     # convert and export all moves from the CSV
@@ -154,9 +154,9 @@ def convert_mdata(input_csv, header=DEFAULT_HEADER):
             move_list[move.name] = move.search_data()
 
     move_list["Error"] = {}
-    with open(util.OUTPUT / "move_index.json", "w", encoding="utf-8") as fp:
+    with open(util.Paths.OUTPUT / "move_index.json", "w", encoding="utf-8") as fp:
         json.dump(move_list, fp, ensure_ascii=False, indent="  ", sort_keys=False)
 
 
 if __name__ == '__main__':
-    convert_mdata(util.DATA / "MDATA.csv")
+    convert_mdata(util.Paths.DATA / "MDATA.csv")

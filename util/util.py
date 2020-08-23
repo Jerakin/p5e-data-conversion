@@ -9,14 +9,17 @@ logging.addLevelName(logging.INFO, "\x1b[1;32m%s\033[1;0m" % logging.getLevelNam
 logging.addLevelName(logging.WARNING, "\x1b[33;21m%s\033[1;0m" % logging.getLevelName(logging.WARNING))
 logging.addLevelName(logging.ERROR, "\x1b[31;21m%s\033[1;0m" % logging.getLevelName(logging.ERROR))
 
-# Paths
-ROOT = Path(__file__).parent.parent
-DATA = ROOT / "data"
-ASSETS = ROOT / "assets"
 
-OUTPUT = ROOT.parent.parent.parent / "assets" / "datafiles"
-POKEMON_OUTPUT = OUTPUT / "pokemon"
-MOVES_OUTPUT = OUTPUT / "moves"
+# Paths
+class Paths:
+    ROOT = Path(__file__).parent.parent
+    DATA = ROOT / "data"
+    ASSETS = ROOT / "assets"
+
+    OUTPUT = ROOT / "dist"
+    POKEMON_OUTPUT = OUTPUT / "pokemon"
+    MOVES_OUTPUT = OUTPUT / "moves"
+
 
 # Constants
 ATTRIBUTES = ["STR", "CON", "DEX", "INT", "WIS", "CHA"]
@@ -29,7 +32,7 @@ def __load(path):
 
 
 def load_extra(name):
-    p = Path(ASSETS / "extra" / name).with_suffix(".json")
+    p = Path(Paths.ASSETS / "extra" / name).with_suffix(".json")
     return __load(p)
 
 
@@ -39,6 +42,13 @@ MERGE_EVOLVE_DATA = load_extra("evolve")
 MERGE_FILTER_DATA = load_extra("filter_data")
 MERGE_MOVE_DATA = load_extra("moves")
 MERGE_ABILITY_DATA = load_extra("abilities")
+
+options = {"remove_dice": False, "output": False}
+
+
+def update_options(_options):
+    merge(options, _options)
+    Paths.OUTPUT = _options["output"] if _options["output"] else Paths.OUTPUT
 
 
 def merge(a, b, path=None):
