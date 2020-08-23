@@ -120,7 +120,8 @@ class Move:
         if not self.output_data["Move Power"]:
             del self.output_data["Move Power"]
 
-        remove_dice_in_description.remove_dice(self.output_data)
+        if util.options["remove_dice"]:
+            remove_dice_in_description.remove_dice(self.output_data)
 
     def search_data(self):
         return {}
