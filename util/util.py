@@ -11,14 +11,38 @@ logging.addLevelName(logging.ERROR, "\x1b[31;21m%s\033[1;0m" % logging.getLevelN
 
 
 # Paths
-class Paths:
-    ROOT = Path(__file__).parent.parent
-    DATA = ROOT / "data"
-    ASSETS = ROOT / "assets"
+class _Paths:
+    def __init__(self):
+        self.ROOT = Path(__file__).parent.parent
+        self._output = None
 
-    OUTPUT = ROOT / "dist"
-    POKEMON_OUTPUT = OUTPUT / "pokemon"
-    MOVES_OUTPUT = OUTPUT / "moves"
+    @property
+    def OUTPUT(self):
+        return self._output if self._output else self.ROOT / "dist"
+
+    @OUTPUT.setter
+    def OUTPUT(self, value):
+        self._output = Path(value)
+
+    @property
+    def DATA(self):
+        return self.ROOT / "data"
+
+    @property
+    def ASSETS(self):
+        return self.ROOT / "assets"
+
+    @property
+    def MOVES_OUTPUT(self):
+        return self.OUTPUT / "moves"
+
+    @property
+    def POKEMON_OUTPUT(self):
+        return self.OUTPUT / "pokemon"
+
+
+# Instantiate our Path class
+Paths = _Paths()
 
 
 # Constants

@@ -44,7 +44,7 @@ def convert_all(folder):
 
 
 def _cli_options():
-    parser = argparse.ArgumentParser(description="Commandline tool to download Defold's Bob")
+    parser = argparse.ArgumentParser()
     optional = parser._action_groups.pop()
     optional.add_argument('-k', '--keep-dice', action='store_true', dest="keep_dice")
     optional.add_argument('-o', '--output', dest="output", help="Custom output directory")
@@ -61,7 +61,7 @@ def _cli_options():
 def _run_cli():
     parser = _cli_options()
     options = parser.parse_args()
-    util.update_options({"remove_dice": not options.keep_dice, "output": options.token if options.token else False})
+    util.update_options({"remove_dice": not options.keep_dice, "output": options.output if options.output else False})
 
     if not options.token:
         if (Path(__file__).parent / "data").exists:
