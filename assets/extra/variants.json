@@ -1,0 +1,22 @@
+{
+  "Pumpkaboo" : [
+    { "name" : "Pumpkaboo - Small", "variant_name" : "Small", "default": true },
+    { "name" : "Pumpkaboo - Average", "variant_name" : "Average" },
+    { "name" : "Pumpkaboo - Large", "variant_name" : "Large" },
+    { "name" : "Pumpkaboo - Supersize", "variant_name" : "Supersize" }
+  ],
+  "Gourgeist" : [
+    { "name" : "Gourgeist - Small", "variant_name" : "Small", "default": true },
+    { "name" : "Gourgeist - Average", "variant_name" : "Average" },
+    { "name" : "Gourgeist - Large", "variant_name" : "Large" },
+    { "name" : "Gourgeist- Supersize", "variant_name" : "Supersize" }
+  ],
+  "Rotom" : [
+    { "name" : "Rotom", "variant_name" : "Regular", "default": true },
+    { "name" : "Rotom Heat", "variant_name" : "Heat" },
+    { "name" : "Rotom Wash", "variant_name" : "Wash" },
+    { "name" : "Rotom Frost", "variant_name" : "Frost" },
+    { "name" : "Rotom Fan", "variant_name" : "Fan" },
+    { "name" : "Rotom Mow", "variant_name" : "Mow" }
+  ]
+}
