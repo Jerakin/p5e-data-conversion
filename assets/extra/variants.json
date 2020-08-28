@@ -11,12 +11,14 @@
     { "name" : "Gourgeist - Large", "variant_name" : "Large" },
     { "name" : "Gourgeist- Supersize", "variant_name" : "Supersize" }
   ],
-  "Rotom" : [
-    { "name" : "Rotom", "variant_name" : "Regular", "default": true },
-    { "name" : "Rotom Heat", "variant_name" : "Heat" },
-    { "name" : "Rotom Wash", "variant_name" : "Wash" },
-    { "name" : "Rotom Frost", "variant_name" : "Frost" },
-    { "name" : "Rotom Fan", "variant_name" : "Fan" },
-    { "name" : "Rotom Mow", "variant_name" : "Mow" }
-  ]
+  "TODO" : {
+    "Rotom" : [
+      { "name" : "Rotom", "variant_name" : "Regular", "default": true },
+      { "name" : "Rotom Heat", "variant_name" : "Heat" },
+      { "name" : "Rotom Wash", "variant_name" : "Wash" },
+      { "name" : "Rotom Frost", "variant_name" : "Frost" },
+      { "name" : "Rotom Fan", "variant_name" : "Fan" },
+      { "name" : "Rotom Mow", "variant_name" : "Mow" }
+    ]
+  }
 }

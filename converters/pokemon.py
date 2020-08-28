@@ -318,19 +318,20 @@ def convert_pdata(input_csv, header=DEFAULT_HEADER):
         # TODO: In the future we may have other variants, like Alolan forms or something.
         # It's unclear what those might look like from a data perspective
         for name,variants in util.VARIANT_DATA.items():
-            for d in variants:
-                if d["name"] in poke_by_name:
-                    poke = poke_by_name[d["name"]]
-                    if "default" in d and d["default"]:
-                        poke.name = name
-                        poke.add_default_variant(d["variant_name"])
-                        def_type_by_variant[name] = d["name"]
+            if type(variants) is list:
+                for d in variants:
+                    if d["name"] in poke_by_name:
+                        poke = poke_by_name[d["name"]]
+                        if "default" in d and d["default"]:
+                            poke.name = name
+                            poke.add_default_variant(d["variant_name"])
+                            def_type_by_variant[name] = d["name"]
+                        else:
+                            # Store for later, after the default variant has been collected
+                            variant_by_type[d["name"]] = d
+                            def_poke_by_type[d["name"]] = name
                     else:
-                        # Store for later, after the default variant has been collected
-                        variant_by_type[d["name"]] = d
-                        def_poke_by_type[d["name"]] = name
-                else:
-                    raise Exception("When searching for variants, could not find pokemon of type '" + d["name"] + "'")
+                        raise Exception("When searching for variants, could not find pokemon of type '" + d["name"] + "'")
 
         # Merge in all the other variants
         for type_name, d in variant_by_type.items():
