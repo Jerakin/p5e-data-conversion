@@ -179,13 +179,13 @@ class Evolve:
     RE_MOVE = re.compile("'(.*)'")
     RE_HOLDING = re.compile("while holding a (.*)\.")
 
-    def __init__(self, header, pokemon_list):
+    def __init__(self, header, pokemon_by_name):
         self.header = header
-        self.pokemon_list = pokemon_list.list
+        self.pokemon_by_name = pokemon_by_name
         self.output_data = {}
 
-    def add(self, csv_row):
-        species = fix_species_name(csv_row[self.header.index(POKEMON)])
+    def add(self, csv_row, poke_data):
+        species = poke_data.name
 
         self.output_data[species] = {}
         self.output_data[species]["into"] = []
@@ -194,9 +194,9 @@ class Evolve:
         evolve_text = csv_row[self.header.index("Evolution for sheet")]
 
         # Iterate all Pokemon names and see if they are in the description
-        for poke in self.pokemon_list:
-            if not poke == species and " {} ".format(poke) in evolve_text:
-                self.output_data[species]["into"].append(poke)
+        for _, poke in self.pokemon_by_name.items():
+            if poke.valid and not poke.name == species and " {} ".format(poke.name) in evolve_text:
+                self.output_data[species]["into"].append(poke.name)
 
         match = self.RE_POINTS.search(evolve_text)
         if match:
@@ -232,27 +232,14 @@ class Evolve:
             json.dump(self.output_data, fp, ensure_ascii=False, indent="  ")
 
 
-class PokemonList:
-    """
-    Holder for list of Pokemon names
-    """
-    def __init__(self, header):
-        self.header = header
-        self.list = []
-        self._index = 0
-
-    def append(self, csv_row):
-        self.list.append(csv_row[self.header.index(POKEMON)])
-
-
 class IndexOrder:
     def __init__(self, header):
         self.header = header
         self.output_data = {}
 
-    def add(self, csv_row):
+    def add(self, csv_row, poke_data):
         value = util.ensure_int(csv_row[self.header.index("Index Number")])
-        species = fix_species_name(csv_row[self.header.index(POKEMON)])
+        species = poke_data.name
 
         if value not in self.output_data:
             self.output_data[value] = []
@@ -268,8 +255,8 @@ class FilterData:
         self.header = header
         self.output_data = {}
 
-    def add(self, csv_row):
-        species = fix_species_name(csv_row[self.header.index(POKEMON)])
+    def add(self, csv_row, poke_data):
+        species = poke_data.name
         if species not in self.output_data:
             self.output_data[species] = {}
         self.output_data[species]["index"] = util.ensure_int(csv_row[self.header.index("Index Number")])
@@ -340,23 +327,8 @@ def collect_variant_data(poke_by_name):
 
 def convert_pdata(input_csv, header=DEFAULT_HEADER):
     with open(input_csv, "r", encoding="utf-8") as fp:
-        # We need to first create a list of all Pokemon for later use
-        reader = csv.reader(fp, delimiter=",", quotechar='"')
-
-        pokemon_list = PokemonList(header)
-        for row in reader:
-            if not row:
-                continue
-            pokemon_list.append(row)
-
-        # Rewind the csv file and create all the json files
-        fp.seek(0)
         reader = csv.reader(fp, delimiter=",", quotechar='"')
         next(reader)
-
-        evolve = Evolve(header, pokemon_list)
-        filter_data = FilterData(header)
-        index_order = IndexOrder(header)
         
         poke_by_name = {}
         row_by_poke = {}
@@ -375,14 +347,18 @@ def convert_pdata(input_csv, header=DEFAULT_HEADER):
         # Some rows are variants of a single pokemon type. Let's go collect those
         collect_variant_data(poke_by_name)
 
+        evolve = Evolve(header, poke_by_name)
+        filter_data = FilterData(header)
+        index_order = IndexOrder(header)
+
         for name, poke in poke_by_name.items():
             if poke.valid:
                 poke.save()
-
+                
                 row = row_by_poke[poke]
-                evolve.add(row)
-                filter_data.add(row)
-                index_order.add(row)
+                evolve.add(row, poke)
+                filter_data.add(row, poke)
+                index_order.add(row, poke)
         
         evolve.save()
         filter_data.save()
