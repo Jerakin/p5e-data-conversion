@@ -21,7 +21,7 @@ def clean_file_name(value):
 
 
 def fix_species_name(value):
-    return value.replace("\n", " ").replace("Zygarde Complete Form", "Zygarde Complete Forme")
+    return value.replace("\n", " ")
 
 
 class Pokemon:
@@ -146,17 +146,22 @@ class Pokemon:
             util.merge(self.output_data, util.MERGE_POKEMON_DATA[self.name])
         self.cleanup()
 
-    def add_default_variant(self, variant_name, species_display):
+    def add_default_variant(self, variant_name, species_display, sprite_suffix, create_mode, permanent):
         if hasattr(self, "variants"):
             raise Exception("Cannot add more than 1 default variant")
         self.variants = {}
         self.variants[variant_name] = {"Default":True, "Display":species_display}
+        if sprite_suffix:
+            self.variants[variant_name]["SpriteSuffix"] = sprite_suffix
+        self.variant_create_mode = create_mode
+        self.variant_permanent = permanent
 
-    def add_variant(self, variant_name, species_display, other_poke_data):
+    def add_variant(self, variant_name, species_display, sprite_suffix, other_poke_data):
         if not hasattr(self, "variants"):
             raise Exception("Must add a default variant before adding additional variants")
-        
         self.variants[variant_name] = {"Default":False, "Display":species_display}
+        if sprite_suffix:
+            self.variants[variant_name]["SpriteSuffix"] = sprite_suffix
         self.variants[variant_name]["Diff"] = util.diff_dict(self.output_data, other_poke_data.output_data)
 
     def save(self):
@@ -284,30 +289,53 @@ def collect_variant_data(poke_by_name):
     variant_by_species = {}
     default_poke_by_species = {}
     default_species_by_variant = {}
+    has_variant_sprite_by_species = {}
     # TODO: In the future we may have other variants, like Alolan forms or something.
     # It's unclear what those might look like from a data perspective
-    for name, variants in util.VARIANT_DATA.items():
-        if type(variants) is list:
-            for variant_data in variants:
-                if variant_data["name"] in poke_by_name:
-                    poke = poke_by_name[variant_data["name"]]
-                    if "default" in variant_data and variant_data["default"]:
-                        poke.name = name
-                        poke.add_default_variant(variant_data["variant_name"], variant_data["species_display"])
-                        default_species_by_variant[name] = variant_data["name"]
+    for name, variant_poke_data in util.VARIANT_DATA.items():
+        if not "create_mode" in variant_poke_data or not isinstance(variant_poke_data["create_mode"], str):
+            raise Exception(f"Variant for species {name} does not specify 'create_mode' string")
+        if not "permanent" in variant_poke_data or not isinstance(variant_poke_data["permanent"], bool):
+            raise Exception(f"Variant for species {name} does not specify 'permanent' bool")
+        if not "variants" in variant_poke_data or not isinstance(variant_poke_data["variants"], list):
+            raise Exception(f"Variant for species {name} does not specify 'variants' list")
+
+        for this_variant_data in variant_poke_data["variants"]:
+            if this_variant_data["name"] in poke_by_name:
+                species_display = this_variant_data["species_display"] if "species_display" in this_variant_data else this_variant_data["name"]
+
+                poke = poke_by_name[this_variant_data["name"]]
+                if "default" in this_variant_data and this_variant_data["default"]:
+                    poke.name = name
+                    
+                    if "sprite_suffix" in variant_poke_data:
+                        poke.output_data["sprite_suffix"] = variant_poke_data["sprite_suffix"]
+                        has_variant_sprite_by_species[name] = False
+                        sprite_suffix = None
                     else:
-                        # Store for later, after the default variant has been collected
-                        variant_by_species[variant_data["name"]] = variant_data
-                        default_poke_by_species[variant_data["name"]] = name
+                        has_variant_sprite_by_species[name] = True
+                        sprite_suffix = this_variant_data["sprite_suffix"] if "sprite_suffix" in this_variant_data else this_variant_data["name"]
+
+                    poke.add_default_variant(this_variant_data["variant_name"], species_display, sprite_suffix, variant_poke_data["create_mode"], variant_poke_data["permanent"])
+                    default_species_by_variant[name] = this_variant_data["name"]
                 else:
-                    raise Exception(f"When searching for variants, could not find pokemon of species {variant_data['name']}")
+                    # Store for later, after the default variant has been collected
+                    variant_by_species[this_variant_data["name"]] = this_variant_data
+                    default_poke_by_species[this_variant_data["name"]] = name
+            else:
+                raise Exception(f"When searching for variants, could not find pokemon of species {this_variant_data['name']}")
 
     # Merge in all the other variants
-    for species, variant_data in variant_by_species.items():
+    for species, this_variant_data in variant_by_species.items():
         default_poke = poke_by_name[default_species_by_variant[default_poke_by_species[species]]]
         variant_poke = poke_by_name[species]
         variant_poke.valid = False
-        default_poke.add_variant(variant_data["variant_name"], variant_data["species_display"], variant_poke)
+        species_display = this_variant_data["species_display"] if "species_display" in this_variant_data else this_variant_data["name"]
+
+        sprite_suffix = None
+        if has_variant_sprite_by_species[default_poke_by_species[species]]:
+            sprite_suffix = this_variant_data["sprite_suffix"] if "sprite_suffix" in this_variant_data else this_variant_data["name"]
+        default_poke.add_variant(this_variant_data["variant_name"], species_display, sprite_suffix, variant_poke)
 
 
 def convert_pdata(input_csv, header=DEFAULT_HEADER):
@@ -331,6 +359,7 @@ def convert_pdata(input_csv, header=DEFAULT_HEADER):
         index_order = IndexOrder(header)
         
         poke_by_name = {}
+        row_by_poke = {}
 
         # Collect all the rows into Pokemon types
         for index, row in enumerate(reader, 1):
@@ -341,6 +370,7 @@ def convert_pdata(input_csv, header=DEFAULT_HEADER):
             poke = Pokemon(header)
             poke.setup(row)
             poke_by_name[poke.name] = poke
+            row_by_poke[poke] = row
 
         # Some rows are variants of a single pokemon type. Let's go collect those
         collect_variant_data(poke_by_name)
@@ -349,6 +379,7 @@ def convert_pdata(input_csv, header=DEFAULT_HEADER):
             if poke.valid:
                 poke.save()
 
+                row = row_by_poke[poke]
                 evolve.add(row)
                 filter_data.add(row)
                 index_order.add(row)
