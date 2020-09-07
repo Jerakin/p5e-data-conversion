@@ -331,6 +331,7 @@ def convert_pdata(input_csv, header=DEFAULT_HEADER):
         index_order = IndexOrder(header)
         
         poke_by_name = {}
+        row_by_poke = {}
 
         # Collect all the rows into Pokemon types
         for index, row in enumerate(reader, 1):
@@ -341,6 +342,7 @@ def convert_pdata(input_csv, header=DEFAULT_HEADER):
             poke = Pokemon(header)
             poke.setup(row)
             poke_by_name[poke.name] = poke
+            row_by_poke[poke] = row
 
         # Some rows are variants of a single pokemon type. Let's go collect those
         collect_variant_data(poke_by_name)
@@ -348,7 +350,8 @@ def convert_pdata(input_csv, header=DEFAULT_HEADER):
         for name, poke in poke_by_name.items():
             if poke.valid:
                 poke.save()
-
+                
+                row = row_by_poke[poke]
                 evolve.add(row)
                 filter_data.add(row)
                 index_order.add(row)
