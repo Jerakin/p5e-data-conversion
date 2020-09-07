@@ -312,35 +312,35 @@ def convert_pdata(input_csv, header=DEFAULT_HEADER):
             poke_by_name[poke.name] = poke
 
         # Some rows are variants of a single pokemon type. Let's go collect those
-        variant_by_type = {}
-        def_poke_by_type = {}
-        def_type_by_variant = {}
+        variant_by_species = {}
+        default_poke_by_species = {}
+        default_species_by_variant = {}
         # TODO: In the future we may have other variants, like Alolan forms or something.
         # It's unclear what those might look like from a data perspective
-        for name,variants in util.VARIANT_DATA.items():
+        for name, variants in util.VARIANT_DATA.items():
             if type(variants) is list:
-                for d in variants:
-                    if d["name"] in poke_by_name:
-                        poke = poke_by_name[d["name"]]
-                        if "default" in d and d["default"]:
+                for variant_data in variants:
+                    if variant_data["name"] in poke_by_name:
+                        poke = poke_by_name[variant_data["name"]]
+                        if "default" in variant_data and variant_data["default"]:
                             poke.name = name
-                            poke.add_default_variant(d["variant_name"])
-                            def_type_by_variant[name] = d["name"]
+                            poke.add_default_variant(variant_data["variant_name"])
+                            default_species_by_variant[name] = variant_data["name"]
                         else:
                             # Store for later, after the default variant has been collected
-                            variant_by_type[d["name"]] = d
-                            def_poke_by_type[d["name"]] = name
+                            variant_by_species[variant_data["name"]] = variant_data
+                            default_poke_by_species[variant_data["name"]] = name
                     else:
-                        raise Exception("When searching for variants, could not find pokemon of type '" + d["name"] + "'")
+                        raise Exception(f"When searching for variants, could not find pokemon of species {d['name']}")
 
         # Merge in all the other variants
-        for type_name, d in variant_by_type.items():
-            def_poke = poke_by_name[def_type_by_variant[def_poke_by_type[type_name]]]
-            variant_poke = poke_by_name[type_name]
+        for species, variant_data in variant_by_species.items():
+            default_poke = poke_by_name[default_species_by_variant[default_poke_by_species[species]]]
+            variant_poke = poke_by_name[species]
             variant_poke.valid = False
-            def_poke.add_variant(d["variant_name"], variant_poke)
+            default_poke.add_variant(variant_data["variant_name"], variant_poke)
 
-        for name,poke in poke_by_name.items():
+        for name, poke in poke_by_name.items():
             if poke.valid:
                 poke.save()
 

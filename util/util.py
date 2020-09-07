@@ -94,7 +94,7 @@ def merge(a, b, path=None):
 
 def diff_dict(base, other):
     diff = {}
-    for k,v in other.items():
+    for k, v in other.items():
         if not k in base:
             diff[k] = v
         else:
