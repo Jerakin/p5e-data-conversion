@@ -1,24 +1,24 @@
 {
   "Pumpkaboo" : [
-    { "name" : "Pumpkaboo - Small", "variant_name" : "Small", "default": true },
-    { "name" : "Pumpkaboo - Average", "variant_name" : "Average" },
-    { "name" : "Pumpkaboo - Large", "variant_name" : "Large" },
-    { "name" : "Pumpkaboo - Supersize", "variant_name" : "Supersize" }
+    { "name" : "Pumpkaboo - Small", "variant_name" : "Small", "species_display" : "Pumpkaboo (Small)", "default": true },
+    { "name" : "Pumpkaboo - Average", "variant_name" : "Average", "species_display" : "Pumpkaboo (Average)" },
+    { "name" : "Pumpkaboo - Large", "variant_name" : "Large", "species_display" : "Pumpkaboo (Large)" },
+    { "name" : "Pumpkaboo - Supersize", "variant_name" : "Supersize", "species_display" : "Pumpkaboo (Supersize)" }
   ],
   "Gourgeist" : [
-    { "name" : "Gourgeist - Small", "variant_name" : "Small", "default": true },
-    { "name" : "Gourgeist - Average", "variant_name" : "Average" },
-    { "name" : "Gourgeist - Large", "variant_name" : "Large" },
-    { "name" : "Gourgeist- Supersize", "variant_name" : "Supersize" }
+    { "name" : "Gourgeist - Small", "variant_name" : "Small", "species_display" : "Gourgeist (Small)", "default": true },
+    { "name" : "Gourgeist - Average", "variant_name" : "Average", "species_display" : "Gourgeist (Average)"  },
+    { "name" : "Gourgeist - Large", "variant_name" : "Large", "species_display" : "Gourgeist (Large)" },
+    { "name" : "Gourgeist- Supersize", "variant_name" : "Supersize", "species_display" : "Gourgeist (Supersize)" }
   ],
   "TODO" : {
     "Rotom" : [
-      { "name" : "Rotom", "variant_name" : "Regular", "default": true },
-      { "name" : "Rotom Heat", "variant_name" : "Heat" },
-      { "name" : "Rotom Wash", "variant_name" : "Wash" },
-      { "name" : "Rotom Frost", "variant_name" : "Frost" },
-      { "name" : "Rotom Fan", "variant_name" : "Fan" },
-      { "name" : "Rotom Mow", "variant_name" : "Mow" }
+      { "name" : "Rotom", "variant_name" : "Regular", "species_display" : "Rotom", "default": true },
+      { "name" : "Rotom Heat", "variant_name" : "Heat", "species_display" : "Rotom Heat" },
+      { "name" : "Rotom Wash", "variant_name" : "Wash", "species_display" : "Rotom Wash" },
+      { "name" : "Rotom Frost", "variant_name" : "Frost", "species_display" : "Rotom Frost" },
+      { "name" : "Rotom Fan", "variant_name" : "Fan", "species_display" : "Rotom Fan" },
+      { "name" : "Rotom Mow", "variant_name" : "Mow", "species_display" : "Rotom Mow" }
     ]
   }
 }

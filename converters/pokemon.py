@@ -146,17 +146,17 @@ class Pokemon:
             util.merge(self.output_data, util.MERGE_POKEMON_DATA[self.name])
         self.cleanup()
 
-    def add_default_variant(self, variant_name):
+    def add_default_variant(self, variant_name, species_display):
         if hasattr(self, "variants"):
             raise Exception("Cannot add more than 1 default variant")
         self.variants = {}
-        self.variants[variant_name] = {"Default":True}
+        self.variants[variant_name] = {"Default":True, "Display":species_display}
 
-    def add_variant(self, variant_name, other_poke_data):
+    def add_variant(self, variant_name, species_display, other_poke_data):
         if not hasattr(self, "variants"):
             raise Exception("Must add a default variant before adding additional variants")
         
-        self.variants[variant_name] = {"Default":False}
+        self.variants[variant_name] = {"Default":False, "Display":species_display}
         self.variants[variant_name]["Diff"] = util.diff_dict(self.output_data, other_poke_data.output_data)
 
     def save(self):
@@ -293,7 +293,7 @@ def collect_variant_data(poke_by_name):
                     poke = poke_by_name[variant_data["name"]]
                     if "default" in variant_data and variant_data["default"]:
                         poke.name = name
-                        poke.add_default_variant(variant_data["variant_name"])
+                        poke.add_default_variant(variant_data["variant_name"], variant_data["species_display"])
                         default_species_by_variant[name] = variant_data["name"]
                     else:
                         # Store for later, after the default variant has been collected
@@ -307,7 +307,7 @@ def collect_variant_data(poke_by_name):
         default_poke = poke_by_name[default_species_by_variant[default_poke_by_species[species]]]
         variant_poke = poke_by_name[species]
         variant_poke.valid = False
-        default_poke.add_variant(variant_data["variant_name"], variant_poke)
+        default_poke.add_variant(variant_data["variant_name"], variant_data["species_display"], variant_poke)
 
 
 def convert_pdata(input_csv, header=DEFAULT_HEADER):
