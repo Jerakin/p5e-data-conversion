@@ -147,6 +147,8 @@ class Pokemon:
         self.cleanup()
 
     def add_default_variant(self, variant_name):
+        if hasattr(self, "variants"):
+            raise Exception("Cannot add more than 1 default variant")
         self.variants = {}
         self.variants[variant_name] = {"Default":True}
 
@@ -278,6 +280,35 @@ class FilterData:
         with (util.Paths.OUTPUT / "filter_data.json").open("w", encoding="utf-8") as fp:
             json.dump(self.output_data, fp, ensure_ascii=False, indent="  ")
 
+def collect_variant_data(poke_by_name):
+    variant_by_species = {}
+    default_poke_by_species = {}
+    default_species_by_variant = {}
+    # TODO: In the future we may have other variants, like Alolan forms or something.
+    # It's unclear what those might look like from a data perspective
+    for name, variants in util.VARIANT_DATA.items():
+        if type(variants) is list:
+            for variant_data in variants:
+                if variant_data["name"] in poke_by_name:
+                    poke = poke_by_name[variant_data["name"]]
+                    if "default" in variant_data and variant_data["default"]:
+                        poke.name = name
+                        poke.add_default_variant(variant_data["variant_name"])
+                        default_species_by_variant[name] = variant_data["name"]
+                    else:
+                        # Store for later, after the default variant has been collected
+                        variant_by_species[variant_data["name"]] = variant_data
+                        default_poke_by_species[variant_data["name"]] = name
+                else:
+                    raise Exception(f"When searching for variants, could not find pokemon of species {variant_data['name']}")
+
+    # Merge in all the other variants
+    for species, variant_data in variant_by_species.items():
+        default_poke = poke_by_name[default_species_by_variant[default_poke_by_species[species]]]
+        variant_poke = poke_by_name[species]
+        variant_poke.valid = False
+        default_poke.add_variant(variant_data["variant_name"], variant_poke)
+
 
 def convert_pdata(input_csv, header=DEFAULT_HEADER):
     with open(input_csv, "r", encoding="utf-8") as fp:
@@ -312,33 +343,7 @@ def convert_pdata(input_csv, header=DEFAULT_HEADER):
             poke_by_name[poke.name] = poke
 
         # Some rows are variants of a single pokemon type. Let's go collect those
-        variant_by_species = {}
-        default_poke_by_species = {}
-        default_species_by_variant = {}
-        # TODO: In the future we may have other variants, like Alolan forms or something.
-        # It's unclear what those might look like from a data perspective
-        for name, variants in util.VARIANT_DATA.items():
-            if type(variants) is list:
-                for variant_data in variants:
-                    if variant_data["name"] in poke_by_name:
-                        poke = poke_by_name[variant_data["name"]]
-                        if "default" in variant_data and variant_data["default"]:
-                            poke.name = name
-                            poke.add_default_variant(variant_data["variant_name"])
-                            default_species_by_variant[name] = variant_data["name"]
-                        else:
-                            # Store for later, after the default variant has been collected
-                            variant_by_species[variant_data["name"]] = variant_data
-                            default_poke_by_species[variant_data["name"]] = name
-                    else:
-                        raise Exception(f"When searching for variants, could not find pokemon of species {d['name']}")
-
-        # Merge in all the other variants
-        for species, variant_data in variant_by_species.items():
-            default_poke = poke_by_name[default_species_by_variant[default_poke_by_species[species]]]
-            variant_poke = poke_by_name[species]
-            variant_poke.valid = False
-            default_poke.add_variant(variant_data["variant_name"], variant_poke)
+        collect_variant_data(poke_by_name)
 
         for name, poke in poke_by_name.items():
             if poke.valid:
