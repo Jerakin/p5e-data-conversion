@@ -108,7 +108,7 @@
     "variants" : [
       { "name" : "Zygarde 10% Forme", "variant_name" : "10% Forme", "default":  true },
       { "name" : "Zygarde 50% Forme", "variant_name" : "50% Forme" },
-      { "name" : "Zygarde Complete Form", "variant_name" : "Complete Forme", "species_display" : "Zygarde Complete Forme", "sprite_suffix" : "Zygarde Complete Forme" }
+      { "name" : "Zygarde Complete Form", "variant_name" : "Complete Forme", "species_display" : "Zygarde Complete Forme", "original_name" : "Zygarde Complete Forme" }
     ]
   },
   "Kyurem" :
