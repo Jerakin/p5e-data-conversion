@@ -66,6 +66,7 @@ MERGE_EVOLVE_DATA = load_extra("evolve")
 MERGE_FILTER_DATA = load_extra("filter_data")
 MERGE_MOVE_DATA = load_extra("moves")
 MERGE_ABILITY_DATA = load_extra("abilities")
+VARIANT_DATA = load_extra("variants")
 
 options = {"remove_dice": False, "output": False}
 
@@ -91,6 +92,20 @@ def merge(a, b, path=None):
             a[key] = b[key]
     return a
 
+def diff_dict(base, other):
+    diff = {}
+    for k, v in other.items():
+        if not k in base:
+            diff[k] = v
+        else:
+            if type(v) is dict:
+                inner_diff = diff_dict(base[k], v)
+                if bool(inner_diff):
+                    diff[k] = inner_diff
+            else:
+                if base[k] != v:
+                    diff[k] = v
+    return diff
 
 def update_progress(progress):
     bar_length = 50  # Modify this to change the length of the progress bar
