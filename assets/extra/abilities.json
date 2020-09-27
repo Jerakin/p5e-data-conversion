@@ -1,3 +1,5 @@
 {
-
+  "Poison Heal": {
+    "Description": "This Pokémon is not affected by the effects of the Poisoned condition. In addition, when it is hit with a poison-type move while poisoned, it heals an amount of hp equal to its level."
+  }
 }

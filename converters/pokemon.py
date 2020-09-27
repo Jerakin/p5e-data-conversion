@@ -144,7 +144,7 @@ class Pokemon:
         self.setup_skill(csv_row)
         self.setup_speed(csv_row)
         self.setup_type(csv_row)
-        self.setup_size(csv_row)
+        # self.setup_size(csv_row)
 
         if self.name in util.MERGE_POKEMON_DATA:
             util.merge(self.output_data, util.MERGE_POKEMON_DATA[self.name])

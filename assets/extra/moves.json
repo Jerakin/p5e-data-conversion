@@ -28,6 +28,18 @@
       }
     }
   },
+  "Karate Chop": {
+    "atk": true
+  },
+  "Stun Spore": {
+    "atk": false
+  },
+  "Will-O-Wisp": {
+    "Description": "You send a sinister, white-hot flame at an\nopponent attempting to inflict a burn. Make a ranged attack roll on a target, causing burn on a hit."
+  },
+  "Light Screen": {
+    "atk": false
+  },
   "Disarming Voice": {
     "auto_hit": true
   },
