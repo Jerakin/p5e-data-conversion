@@ -148,6 +148,10 @@ class Pokemon:
 
         if self.name in util.MERGE_POKEMON_DATA:
             util.merge(self.output_data, util.MERGE_POKEMON_DATA[self.name])
+
+        evolve_text = csv_row[self.header.index("Evolution for sheet")]
+        self.output_data["evolve_text"] = evolve_text
+
         self.cleanup()
 
     def save(self):
