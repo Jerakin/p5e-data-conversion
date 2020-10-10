@@ -275,7 +275,26 @@ class FilterData:
         with (util.Paths.OUTPUT / "filter_data.json").open("w", encoding="utf-8") as fp:
             json.dump(self.output_data, fp, ensure_ascii=False, indent="  ")
 
+
+class VariantMap:
+    def __init__(self):
+        self.output_data = {}
+
+    def add(self, poke_base_name, poke_variant_name):
+        if not poke_base_name in self.output_data:
+            self.output_data[poke_base_name] = [poke_variant_name]
+        else:
+            self.output_data[poke_base_name].append(poke_variant_name)
+
+    def save(self):
+        with (util.Paths.OUTPUT / "variant_map.json").open("w", encoding="utf-8") as fp:
+            json.dump(self.output_data, fp, ensure_ascii=False, indent="  ")
+
+
+
 def collect_variant_data(poke_by_name):
+    variant_map = VariantMap()
+
     variant_by_species = {}
     default_poke_by_species = {}
     default_species_by_variant = {}
@@ -300,6 +319,7 @@ def collect_variant_data(poke_by_name):
                     original_name = this_variant_data["original_name"] if "original_name" in this_variant_data else this_variant_data["name"]
 
                     poke.add_default_variant(this_variant_data["variant_name"], species_display, original_name, variant_poke_data["create_mode"], variant_poke_data["permanent"])
+                    variant_map.add(name, original_name)
                     default_species_by_variant[name] = this_variant_data["name"]
 
                     if "sprite_suffix" in variant_poke_data:
@@ -322,6 +342,9 @@ def collect_variant_data(poke_by_name):
         original_name = this_variant_data["original_name"] if "original_name" in this_variant_data else this_variant_data["name"]
 
         default_poke.add_variant(this_variant_data["variant_name"], species_display, original_name, variant_poke)
+        variant_map.add(default_poke_by_species[species], original_name)
+
+    return variant_map
 
 
 def convert_pdata(input_csv, header=DEFAULT_HEADER):
@@ -344,7 +367,7 @@ def convert_pdata(input_csv, header=DEFAULT_HEADER):
             row_by_poke[poke] = row
 
         # Some rows are variants of a single pokemon type. Let's go collect those
-        collect_variant_data(poke_by_name)
+        variant_map = collect_variant_data(poke_by_name)
 
         evolve = Evolve(header, poke_by_name)
         filter_data = FilterData(header)
@@ -359,6 +382,7 @@ def convert_pdata(input_csv, header=DEFAULT_HEADER):
                 filter_data.add(row, poke)
                 index_order.add(row, poke)
         
+        variant_map.save()
         evolve.save()
         filter_data.save()
         index_order.save()
