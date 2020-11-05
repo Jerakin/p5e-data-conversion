@@ -1,24 +1,142 @@
 {
-  "Pumpkaboo" : [
-    { "name" : "Pumpkaboo - Small", "variant_name" : "Small", "species_display" : "Pumpkaboo (Small)", "default": true },
-    { "name" : "Pumpkaboo - Average", "variant_name" : "Average", "species_display" : "Pumpkaboo (Average)" },
-    { "name" : "Pumpkaboo - Large", "variant_name" : "Large", "species_display" : "Pumpkaboo (Large)" },
-    { "name" : "Pumpkaboo - Supersize", "variant_name" : "Supersize", "species_display" : "Pumpkaboo (Supersize)" }
-  ],
-  "Gourgeist" : [
-    { "name" : "Gourgeist - Small", "variant_name" : "Small", "species_display" : "Gourgeist (Small)", "default": true },
-    { "name" : "Gourgeist - Average", "variant_name" : "Average", "species_display" : "Gourgeist (Average)"  },
-    { "name" : "Gourgeist - Large", "variant_name" : "Large", "species_display" : "Gourgeist (Large)" },
-    { "name" : "Gourgeist- Supersize", "variant_name" : "Supersize", "species_display" : "Gourgeist (Supersize)" }
-  ],
-  "TODO" : {
-    "Rotom" : [
-      { "name" : "Rotom", "variant_name" : "Regular", "species_display" : "Rotom", "default": true },
-      { "name" : "Rotom Heat", "variant_name" : "Heat", "species_display" : "Rotom Heat" },
-      { "name" : "Rotom Wash", "variant_name" : "Wash", "species_display" : "Rotom Wash" },
-      { "name" : "Rotom Frost", "variant_name" : "Frost", "species_display" : "Rotom Frost" },
-      { "name" : "Rotom Fan", "variant_name" : "Fan", "species_display" : "Rotom Fan" },
-      { "name" : "Rotom Mow", "variant_name" : "Mow", "species_display" : "Rotom Mow" }
+  "Pumpkaboo" :
+  {
+    "create_mode" : "choose",
+    "permanent" :  true,
+    "sprite_suffix" :  "Pumpkaboo",
+    "variants" : [
+      { "name" : "Pumpkaboo - Small", "variant_name" : "Small", "species_display" : "Pumpkaboo (Small)", "default": true },
+      { "name" : "Pumpkaboo - Average", "variant_name" : "Average", "species_display" : "Pumpkaboo (Average)" },
+      { "name" : "Pumpkaboo - Large", "variant_name" : "Large", "species_display" : "Pumpkaboo (Large)" },
+      { "name" : "Pumpkaboo - Supersize", "variant_name" : "Supersize", "species_display" : "Pumpkaboo (Supersize)" }
+    ]
+  },
+  "Gourgeist" :
+  {
+    "create_mode" : "choose",
+    "permanent" :  true,
+    "sprite_suffix" :  "Gourgeist",
+    "variants" : [
+      { "name" : "Gourgeist - Small", "variant_name" : "Small", "species_display" : "Gourgeist (Small)", "default": true },
+      { "name" : "Gourgeist - Average", "variant_name" : "Average", "species_display" : "Gourgeist (Average)"  },
+      { "name" : "Gourgeist - Large", "variant_name" : "Large", "species_display" : "Gourgeist (Large)" },
+      { "name" : "Gourgeist- Supersize", "variant_name" : "Supersize", "species_display" : "Gourgeist (Supersize)" }
+    ]
+  },
+  "Rotom" :
+  {
+    "create_mode" : "choose",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Rotom", "variant_name" : "Regular", "default": true },
+      { "name" : "Rotom Heat", "variant_name" : "Heat" },
+      { "name" : "Rotom Wash", "variant_name" : "Wash" },
+      { "name" : "Rotom Frost", "variant_name" : "Frost" },
+      { "name" : "Rotom Fan", "variant_name" : "Fan" },
+      { "name" : "Rotom Mow", "variant_name" : "Mow" }
+    ]
+  },
+  "Arceus" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "sprite_suffix" :  "Arceus",
+    "variants" : [
+      { "name" : "Arceus (Normal)", "variant_name" : "Normal", "default": true },
+      { "name" : "Arceus (Bug)", "variant_name" : "Bug" },
+      { "name" : "Arceus (Dark)", "variant_name" : "Dark" },
+      { "name" : "Arceus (Dragon)", "variant_name" : "Dragon" },
+      { "name" : "Arceus (Electric)", "variant_name" : "Electric" },
+      { "name" : "Arceus (Fairy)", "variant_name" : "Fairy" },
+      { "name" : "Arceus (Fighting)", "variant_name" : "Fighting" },
+      { "name" : "Arceus (Fire)", "variant_name" : "Fire" },
+      { "name" : "Arceus (Flying)", "variant_name" : "Flying" },
+      { "name" : "Arceus (Ghost)", "variant_name" : "Ghost" },
+      { "name" : "Arceus (Grass)", "variant_name" : "Grass" },
+      { "name" : "Arceus (Ground)", "variant_name" : "Ground" },
+      { "name" : "Arceus (Ice)", "variant_name" : "Ice" },
+      { "name" : "Arceus (Poison)", "variant_name" : "Poison" },
+      { "name" : "Arceus (Psychic)", "variant_name" : "Psychic" },
+      { "name" : "Arceus (Rock)", "variant_name" : "Rock" },
+      { "name" : "Arceus (Steel)", "variant_name" : "Steel" },
+      { "name" : "Arceus (Water)", "variant_name" : "Water" }
+    ]
+  },
+  "Castform" :
+  {
+    "create_mode" : "choose",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Castform", "variant_name" : "Normal", "default": true },
+      { "name" : "Castform Sunny", "variant_name" : "Sunny", "species_display" : "Sunny Castform" },
+      { "name" : "Castform Rainy", "variant_name" : "Rainy", "species_display" : "Rainy Castform" },
+      { "name" : "Castform Snowy", "variant_name" : "Snowy", "species_display" : "Snowy Castform" }
+    ]
+  },
+  "Giratina" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Giratina Altered Forme", "variant_name" : "Altered Forme", "default": true },
+      { "name" : "Giratina Origin Forme", "variant_name" : "Origin Forme" }
+    ]
+  },
+  "Hoopa" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Hoopa Confined", "variant_name" : "Confined", "default": true },
+      { "name" : "Hoopa Unbound", "variant_name" : "Unbound" }
+    ]
+  },
+  "Wormadam" :
+  {
+    "create_mode" : "choose",
+    "permanent" :  true,
+    "variants" : [
+      { "name" : "Wormadam Plant Cloak", "variant_name" : "Plant Cloak", "species_display" : "Wormadam (Plant Cloak)", "default":  true },
+      { "name" : "Wormadam Sand Cloak", "variant_name" : "Sand Cloak", "species_display" : "Wormadam (Sand Cloak)" },
+      { "name" : "Wormadam Trash Cloak", "variant_name" : "Trash Cloak", "species_display" : "Wormadam (Trash Cloak)" }
+    ]
+  },
+  "Zygarde" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Zygarde 10% Forme", "variant_name" : "10% Forme", "default":  true },
+      { "name" : "Zygarde 50% Forme", "variant_name" : "50% Forme" },
+      { "name" : "Zygarde Complete Form", "variant_name" : "Complete Forme", "species_display" : "Zygarde Complete Forme", "original_name" : "Zygarde Complete Forme" }
+    ]
+  },
+  "Kyurem" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Kyurem", "variant_name" : "Regular", "default":  true },
+      { "name" : "Black Kyurem", "variant_name" : "Black" },
+      { "name" : "White Kyurem", "variant_name" : "White" }
+    ]
+  },
+  "Shaymin" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Shaymin Land", "variant_name" : "Land", "default":  true },
+      { "name" : "Shaymin Sky", "variant_name" : "Sky" }
+    ]
+  },
+  "Meloetta" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Meloetta - Aria", "variant_name" : "Aria", "species_display" : "Meloetta (Aria)", "default":  true },
+      { "name" : "Meloetta - Pirouette", "variant_name" : "Pirouette", "species_display" : "Meloetta (Pirouette)" }
     ]
   }
 }
