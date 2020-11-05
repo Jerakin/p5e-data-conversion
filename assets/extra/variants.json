@@ -138,5 +138,218 @@
       { "name" : "Meloetta - Aria", "variant_name" : "Aria", "species_display" : "Meloetta (Aria)", "default":  true },
       { "name" : "Meloetta - Pirouette", "variant_name" : "Pirouette", "species_display" : "Meloetta (Pirouette)" }
     ]
+  },
+  "Wishiwashi" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Wishiwashi Solo Form", "variant_name" : "Solo Form", "species_display" : "Wishiwashi", "default":  true },
+      { "name" : "Wishiwashi School Form", "variant_name" : "School Form", "species_display" : "Wishiwashi (School Form)" }
+    ]
+  },
+  "Oricorio" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Oricorio Baile Style", "variant_name" : "Baile Style", "species_display" : "Oricorio Baile", "default": true },
+      { "name" : "Oricorio Pom-Pom Style", "variant_name" : "Pom-Pom Style", "species_display" : "Oricorio Pom-Pom" },
+      { "name" : "Oricorio Pa'u Style", "variant_name" : "Pa'u Style", "species_display" : "Oricorio Pa'u" },
+      { "name" : "Oricorio Sensu Style", "variant_name" : "Sensu Style", "species_display" : "Oricorio Sensu" }
+    ]
+  },
+  "Lycanroc" :
+  {
+    "create_mode" : "default",
+    "permanent" :  true,
+    "variants" : [
+      { "name" : "Lycanroc Midday Form", "variant_name" : "Midday Form", "species_display" : "Lycanroc Midday", "default": true },
+      { "name" : "Lycanroc Midnight Form", "variant_name" : "Midnight Form", "species_display" : "Lycanroc Midnight" },
+      { "name" : "Lycanroc Dusk Form", "variant_name" : "Dusk Form", "species_display" : "Lycanroc Dusk" }
+    ]
+  },
+  "Minior" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Minior Meteor Form", "variant_name" : "Meteor Form", "species_display" : "Minior", "default": true },
+      { "name" : "Minior Core Form", "variant_name" : "Core Form", "species_display" : "Minior Core" }
+    ]
+  },
+   "Necrozma" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Necrozma", "variant_name" : "Necrozma", "species_display" : "Necrozma", "default": true },
+      { "name" : "Dusk Mane Necrozma", "variant_name" : "Dusk Mane", "species_display" : "Dusk Mane Necrozma" },
+      { "name" : "Dawn Wings Necrozma", "variant_name" : "Dawn Wings", "species_display" : "Dawn Wings Necrozma" },
+      { "name" : "Ultra Necrozma", "variant_name" : "Ultra", "species_display" : "Ultra Necrozma" }
+    ]
+  },
+  "Rattata" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Rattata", "variant_name" : "Rattata", "species_display" : "Rattata", "default": true },
+      { "name" : "Alolan Rattata", "variant_name" : "Alolan Rattata", "species_display" : "Alolan Rattata" }
+    ]
+  },
+  "Raticate" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Raticate", "variant_name" : "Raticate", "species_display" : "Raticate", "default": true },
+      { "name" : "Alolan Raticate", "variant_name" : "Alolan Raticate", "species_display" : "Alolan Raticate" }
+    ]
+  },
+  "Raichu" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Raichu", "variant_name" : "Raichu", "species_display" : "Raichu", "default": true },
+      { "name" : "Alolan Raichu", "variant_name" : "Alolan Raichu", "species_display" : "Alolan Raichu" }
+    ]
+  },
+  "Sandshrew" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Sandshrew", "variant_name" : "Sandshrew", "species_display" : "Sandshrew", "default": true },
+      { "name" : "Alolan Sandshrew", "variant_name" : "Alolan Sandshrew", "species_display" : "Alolan Sandshrew" }
+    ]
+  },
+  "Sandslash" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Sandslash", "variant_name" : "Sandslash", "species_display" : "Sandslash", "default": true },
+      { "name" : "Alolan Sandslash", "variant_name" : "Alolan Sandslash", "species_display" : "Alolan Sandslash" }
+    ]
+  },
+  "Vulpix" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Vulpix", "variant_name" : "Vulpix", "species_display" : "Vulpix", "default": true },
+      { "name" : "Alolan Vulpix", "variant_name" : "Alolan Vulpix", "species_display" : "Alolan Vulpix" }
+    ]
+  },
+
+  "Ninetales" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Ninetales", "variant_name" : "Ninetales", "species_display" : "Ninetales", "default": true },
+      { "name" : "Alolan Ninetales", "variant_name" : "Alolan Ninetales", "species_display" : "Alolan Ninetales" }
+    ]
+  },
+  "Diglett" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Diglett", "variant_name" : "Diglett", "species_display" : "Diglett", "default": true },
+      { "name" : "Alolan Diglett", "variant_name" : "Alolan Diglett", "species_display" : "Alolan Diglett" }
+    ]
+  },
+  "Dugtrio" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Dugtrio", "variant_name" : "Dugtrio", "species_display" : "Dugtrio", "default": true },
+      { "name" : "Alolan Dugtrio", "variant_name" : "Alolan Dugtrio", "species_display" : "Alolan Dugtrio" }
+    ]
+  },
+  "Meowth" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Meowth", "variant_name" : "Meowth", "species_display" : "Meowth", "default": true },
+      { "name" : "Alolan Meowth", "variant_name" : "Alolan Meowth", "species_display" : "Alolan Meowth" }
+    ]
+  },
+  "Persian" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Persian", "variant_name" : "Persian", "species_display" : "Persian", "default": true },
+      { "name" : "Alolan Persian", "variant_name" : "Alolan Persian", "species_display" : "Alolan Persian" }
+    ]
+  },
+  "Geodude" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Geodude", "variant_name" : "Geodude", "species_display" : "Geodude", "default": true },
+      { "name" : "Alolan Geodude", "variant_name" : "Alolan Geodude", "species_display" : "Alolan Geodude" }
+    ]
+  },
+  "Golem" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Golem", "variant_name" : "Golem", "species_display" : "Golem", "default": true },
+      { "name" : "Alolan Golem", "variant_name" : "Alolan Golem", "species_display" : "Alolan Golem" }
+    ]
+  },
+  "Grimer" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Grimer", "variant_name" : "Grimer", "species_display" : "Grimer", "default": true },
+      { "name" : "Alolan Grimer", "variant_name" : "Alolan Grimer", "species_display" : "Alolan Grimer" }
+    ]
+  },
+  "Muk" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Muk", "variant_name" : "Muk", "species_display" : "Muk", "default": true },
+      { "name" : "Alolan Muk", "variant_name" : "Alolan Muk", "species_display" : "Alolan Muk" }
+    ]
+  },
+  "Exeggutor" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Exeggutor", "variant_name" : "Exeggutor", "species_display" : "Exeggutor", "default": true },
+      { "name" : "Alolan Exeggutor", "variant_name" : "Alolan Exeggutor", "species_display" : "Alolan Exeggutor" }
+    ]
+  },
+  "Marowak" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Marowak", "variant_name" : "Marowak", "species_display" : "Marowak", "default": true },
+      { "name" : "Alolan Marowak", "variant_name" : "Alolan Marowak", "species_display" : "Alolan Marowak" }
+    ]
+  },
+  "Graveler" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "variants" : [
+      { "name" : "Graveler", "variant_name" : "Graveler", "species_display" : "Graveler", "default": true },
+      { "name" : "Alolan Graveler", "variant_name" : "Alolan Graveler", "species_display" : "Alolan Graveler" }
+    ]
   }
 }

@@ -17,7 +17,7 @@ DEFAULT_HEADER = ("Index Number", "Evo Stages with Eviolite", "Evo Stages w/o Ev
 
 
 def clean_file_name(value):
-    return value.replace(" ♀", "-f").replace(" ♂", "-m").replace("é", "e").replace("\n", " ")
+    return value.replace(" ♀", "-f").replace(" ♂", "-m").replace("é", "e").replace("\n", " ").replace(":", "")
 
 
 def fix_species_name(value):

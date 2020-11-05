@@ -128,24 +128,32 @@ def update_progress(progress):
 
 
 def ensure_int(value):
+    if value == "#N/A":
+        return None
     if value:
         return int(value)
     return None
 
 
 def ensure_float(value):
+    if value == "#N/A":
+        return None
     if value:
         return float(value)
     return None
 
 
 def ensure_string(value):
+    if value == "#N/A":
+        return None
     if value and value != "None":
         return value.strip('"').strip()
     return None
 
 
 def ensure_list(value, sep=','):
+    if value == "#N/A":
+        return None
     if value:
         return [ensure_string(x) for x in value.split(sep)]
     return None
