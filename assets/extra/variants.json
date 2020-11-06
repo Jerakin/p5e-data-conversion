@@ -173,7 +173,7 @@
   {
     "create_mode" : "default",
     "permanent" :  false,
-    "sprite_suffix" :  "Arceus",
+    "sprite_suffix" :  "Silvally",
     "variants" : [
       { "name" : "Silvally (Normal)", "variant_name" : "Normal", "default": true },
       { "name" : "Silvally (Bug)", "variant_name" : "Bug" },
