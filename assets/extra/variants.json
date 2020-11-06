@@ -169,6 +169,32 @@
       { "name" : "Lycanroc Dusk Form", "variant_name" : "Dusk Form", "species_display" : "Lycanroc Dusk" }
     ]
   },
+  "Silvally" :
+  {
+    "create_mode" : "default",
+    "permanent" :  false,
+    "sprite_suffix" :  "Arceus",
+    "variants" : [
+      { "name" : "Silvally (Normal)", "variant_name" : "Normal", "default": true },
+      { "name" : "Silvally (Bug)", "variant_name" : "Bug" },
+      { "name" : "Silvally (Dark)", "variant_name" : "Dark" },
+      { "name" : "Silvally (Dragon)", "variant_name" : "Dragon" },
+      { "name" : "Silvally (Electric)", "variant_name" : "Electric" },
+      { "name" : "Silvally (Fairy)", "variant_name" : "Fairy" },
+      { "name" : "Silvally (Fighting)", "variant_name" : "Fighting" },
+      { "name" : "Silvally (Fire)", "variant_name" : "Fire" },
+      { "name" : "Silvally (Flying)", "variant_name" : "Flying" },
+      { "name" : "Silvally (Ghost)", "variant_name" : "Ghost" },
+      { "name" : "Silvally (Grass)", "variant_name" : "Grass" },
+      { "name" : "Silvally (Ground)", "variant_name" : "Ground" },
+      { "name" : "Silvally (Ice)", "variant_name" : "Ice" },
+      { "name" : "Silvally (Poison)", "variant_name" : "Poison" },
+      { "name" : "Silvally (Psychic)", "variant_name" : "Psychic" },
+      { "name" : "Silvally (Rock)", "variant_name" : "Rock" },
+      { "name" : "Silvally (Steel)", "variant_name" : "Steel" },
+      { "name" : "Silvally (Water)", "variant_name" : "Water" }
+    ]
+  },
   "Minior" :
   {
     "create_mode" : "default",
