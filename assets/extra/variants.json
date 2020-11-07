@@ -207,7 +207,7 @@
    "Necrozma" :
   {
     "create_mode" : "default",
-    "permanent" :  false,
+    "permanent" :  true,
     "variants" : [
       { "name" : "Necrozma", "variant_name" : "Regular", "default": true },
       { "name" : "Dusk Mane Necrozma", "variant_name" : "Dusk Mane" },
@@ -217,8 +217,8 @@
   },
   "Rattata" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Rattata", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Rattata", "variant_name" : "Alola" }
@@ -226,8 +226,8 @@
   },
   "Raticate" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Raticate", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Raticate", "variant_name" : "Alola" }
@@ -235,8 +235,8 @@
   },
   "Raichu" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Raichu", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Raichu", "variant_name" : "Alola" }
@@ -244,8 +244,8 @@
   },
   "Sandshrew" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Sandshrew", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Sandshrew", "variant_name" : "Alola" }
@@ -253,8 +253,8 @@
   },
   "Sandslash" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Sandslash", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Sandslash", "variant_name" : "Alola" }
@@ -262,8 +262,8 @@
   },
   "Vulpix" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Vulpix", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Vulpix", "variant_name" : "Alola" }
@@ -272,8 +272,8 @@
 
   "Ninetales" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Ninetales", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Ninetales", "variant_name" : "Alola" }
@@ -281,8 +281,8 @@
   },
   "Diglett" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Diglett", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Diglett", "variant_name" : "Alola" }
@@ -290,8 +290,8 @@
   },
   "Dugtrio" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Dugtrio", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Dugtrio", "variant_name" : "Alola" }
@@ -299,8 +299,8 @@
   },
   "Meowth" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Meowth", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Meowth", "variant_name" : "Alola" }
@@ -308,8 +308,8 @@
   },
   "Persian" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Persian", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Persian", "variant_name" : "Alola" }
@@ -317,8 +317,8 @@
   },
   "Geodude" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Geodude", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Geodude", "variant_name" : "Alola" }
@@ -326,8 +326,8 @@
   },
   "Golem" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Golem", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Golem", "variant_name" : "Alola" }
@@ -335,8 +335,8 @@
   },
   "Grimer" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Grimer", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Grimer", "variant_name" : "Alola" }
@@ -344,8 +344,8 @@
   },
   "Muk" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Muk", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Muk", "variant_name" : "Alola" }
@@ -353,8 +353,8 @@
   },
   "Exeggutor" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Exeggutor", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Exeggutor", "variant_name" : "Alola" }
@@ -362,8 +362,8 @@
   },
   "Marowak" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Marowak", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Marowak", "variant_name" : "Alola" }
@@ -371,8 +371,8 @@
   },
   "Graveler" :
   {
-    "create_mode" : "default",
-    "permanent" :  false,
+    "create_mode" : "choose",
+    "permanent" :  true,
     "variants" : [
       { "name" : "Graveler", "variant_name" : "Kanto", "default": true },
       { "name" : "Alolan Graveler", "variant_name" : "Alola" }
