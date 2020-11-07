@@ -161,7 +161,7 @@
   },
   "Lycanroc" :
   {
-    "create_mode" : "default",
+    "create_mode" : "choose",
     "permanent" :  true,
     "variants" : [
       { "name" : "Lycanroc Midday Form", "variant_name" : "Midday Form", "species_display" : "Lycanroc Midday", "default": true },
