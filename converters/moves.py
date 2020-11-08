@@ -58,6 +58,7 @@ class Move:
         self.name = None
         self.healing_move = False
         self.output_data = {}
+        self.valid = False
 
     def setup_damage(self, csv_row):
         for key, level in {"Dmg lvl 1": 1, "Dmg lvl 5": 5, "Dmg lvl 10": 10, "Dmg lvl 17": 17, }.items():
@@ -99,6 +100,10 @@ class Move:
 
     def setup(self, csv_row):
         self.name = csv_row[self.header.index("Name")]
+        if self.name.strip() == "":
+            self.valid = False
+            return
+
         self.output_data["Type"] = util.ensure_string(csv_row[self.header.index("Type")])
         self.output_data["Move Power"] = util.ensure_list(csv_row[self.header.index("Move Power")], "/")
         self.output_data["Move Time"] = util.ensure_string(csv_row[self.header.index("Move Time")])
@@ -151,8 +156,9 @@ def convert_mdata(input_csv, header=DEFAULT_HEADER):
             # Each row is one Pokemon
             move = Move(header)
             move.setup(row)
-            move.save()
-            move_list[move.name] = move.search_data()
+            if move.valid:
+                move.save()
+                move_list[move.name] = move.search_data()
 
     move_list["Error"] = {}
     with open(util.Paths.OUTPUT / "move_index.json", "w", encoding="utf-8") as fp:
