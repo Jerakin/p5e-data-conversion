@@ -25,9 +25,9 @@ def fix_species_name(value):
 
 
 class Pokemon:
-    RE_STARTING_MOVES = re.compile("Starting Moves: ([A-Za-z ,-12']*)")
+    RE_STARTING_MOVES = re.compile("Starting Moves: ([A-Za-z ,-12'’]*)")
     RE_TM_MOVES = re.compile("TM: (.*)")
-    RE_LEVEL_MOVES = re.compile("Level (\d+): ([A-Za-z ,'-]*)")
+    RE_LEVEL_MOVES = re.compile("Level (\d+): ([A-Za-z ,'-’]*)")
 
     def __init__(self, header):
         self.header = header
@@ -365,9 +365,9 @@ def convert_pdata(input_csv, header=DEFAULT_HEADER):
             poke.setup(row)
             poke_by_name[poke.name] = poke
             row_by_poke[poke] = row
-
-        # Some rows are variants of a single pokemon type. Let's go collect those
-        variant_map = collect_variant_data(poke_by_name)
+        if util.options["variants"]:
+            # Some rows are variants of a single pokemon type. Let's go collect those
+            variant_map = collect_variant_data(poke_by_name)
 
         evolve = Evolve(header, poke_by_name)
         filter_data = FilterData(header)
@@ -381,8 +381,9 @@ def convert_pdata(input_csv, header=DEFAULT_HEADER):
                 evolve.add(row, poke)
                 filter_data.add(row, poke)
                 index_order.add(row, poke)
-        
-        variant_map.save()
+
+        if util.options["variants"]:
+            variant_map.save()
         evolve.save()
         filter_data.save()
         index_order.save()

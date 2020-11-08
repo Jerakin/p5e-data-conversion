@@ -48,6 +48,7 @@ def _cli_options():
     optional = parser._action_groups.pop()
     optional.add_argument('-k', '--keep-dice', action='store_true', dest="keep_dice")
     optional.add_argument('-o', '--output', dest="output", help="Custom output directory")
+    optional.add_argument('-nv', '--no-variants', dest="no_variants", action='store_true', help="Custom output directory")
 
     required = parser.add_argument_group("required arguments")
     required.add_argument('token', nargs="?",
@@ -61,7 +62,11 @@ def _cli_options():
 def _run_cli():
     parser = _cli_options()
     options = parser.parse_args()
-    util.update_options({"remove_dice": not options.keep_dice, "output": options.output if options.output else False})
+    util.update_options({
+        "remove_dice": not options.keep_dice,
+        "output": options.output if options.output else False,
+        "variants": not options.no_variants if options.no_variants else False
+    })
 
     if not options.token:
         if (Path(__file__).parent / "data").exists:

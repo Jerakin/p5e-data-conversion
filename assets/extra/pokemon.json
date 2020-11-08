@@ -29,5 +29,40 @@
   "Empoleon": {
     "WSp": 30,
     "Ssp": 30
+  "Gourgeist - Average": {
+    "HP": 84,
+    "Type": ["Ghost", "Grass"],
+    "SR": 12.0,
+    "Hit Dice": 10
+  },
+  "Gourgeist - Large": {
+    "HP": 84,
+    "Type": ["Ghost", "Grass"],
+    "SR": 12.0,
+    "Hit Dice": 10
+  },
+  "Gourgeist- Supersize": {
+    "HP": 84,
+    "Type": ["Ghost", "Grass"],
+    "SR": 12.0,
+    "Hit Dice": 10
+  },
+  "Pumpkaboo - Average": {
+    "HP": 17,
+    "Type": ["Ghost", "Grass"],
+    "SR": 2.0,
+    "Hit Dice": 6
+  },
+  "Pumpkaboo - Large": {
+    "HP": 17,
+    "Type": ["Ghost", "Grass"],
+    "SR": 2.0,
+    "Hit Dice": 6
+  },
+  "Pumpkaboo - Supersize": {
+    "HP": 17,
+    "Type": ["Ghost", "Grass"],
+    "SR": 2.0,
+    "Hit Dice": 6
   }
 }

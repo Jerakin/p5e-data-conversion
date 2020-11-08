@@ -147,7 +147,7 @@ def ensure_string(value):
     if value == "#N/A":
         return None
     if value and value != "None":
-        return value.strip('"').strip()
+        return value.strip('"').strip().replace("’", "'")
     return None
 
 
