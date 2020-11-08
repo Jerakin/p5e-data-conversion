@@ -35,3 +35,9 @@ def convert_idata(input_file):
 
 def convert_tdata(input_file):
     __convert(input_file, "abilities", "Description")
+    with open(util.Paths.OUTPUT / "abilities.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    data["Power Construct"] = util.MERGE_ABILITY_DATA["Power Construct"]
+    with open(util.Paths.OUTPUT / "abilities.json", "w", encoding="utf-8") as fp:
+        json.dump(data, fp, indent="  ", ensure_ascii=False, sort_keys=True)
