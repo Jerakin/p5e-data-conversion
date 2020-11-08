@@ -65,7 +65,7 @@ def _run_cli():
     util.update_options({
         "remove_dice": not options.keep_dice,
         "output": options.output if options.output else False,
-        "variants": not options.no_variants if options.no_variants else False
+        "variants": not options.no_variants
     })
 
     if not options.token:
