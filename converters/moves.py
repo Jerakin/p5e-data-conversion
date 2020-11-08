@@ -58,7 +58,7 @@ class Move:
         self.name = None
         self.healing_move = False
         self.output_data = {}
-        self.valid = False
+        self.valid = True
 
     def setup_damage(self, csv_row):
         for key, level in {"Dmg lvl 1": 1, "Dmg lvl 5": 5, "Dmg lvl 10": 10, "Dmg lvl 17": 17, }.items():
@@ -100,7 +100,7 @@ class Move:
 
     def setup(self, csv_row):
         self.name = csv_row[self.header.index("Name")]
-        if self.name.strip() == "":
+        if not self.name.strip():
             self.valid = False
             return
 
