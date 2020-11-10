@@ -46,7 +46,7 @@ def get_worksheet(cred_file):
         credentials = ServiceAccountCredentials.from_json_keyfile_dict(cred_data, scope)
     gc = gspread.authorize(credentials)
 
-    return gc.open(r"DM Pokémon Builder Gen I - VI.xlsx")
+    return gc.open(r"DM Pokémon Builder Gen I - VII.xlsx")
 
 
 def main(cred_file):
