@@ -27,6 +27,7 @@ def fix_species_name(value):
 class Pokemon:
     RE_STARTING_MOVES = re.compile("Starting Moves: ([A-Za-z ,-12'’]*)")
     RE_TM_MOVES = re.compile("TM: (.*)")
+    RE_EGG_MOVES = re.compile("Egg Moves: (.*)")
     RE_LEVEL_MOVES = re.compile("Level (\d+): ([A-Za-z ,'-’]*)")
 
     def __init__(self, header):
@@ -109,6 +110,11 @@ class Pokemon:
                 self.output_data["Moves"]["TM"] = [int(x) for x in range(1, 101)]
             else:
                 self.output_data["Moves"]["TM"] = [int(x) for x in re.findall(r"[0-9]+", tm_moves.group(1))]
+
+        egg_moves = self.RE_EGG_MOVES.search(move_text)
+        if egg_moves:
+            self.output_data["Moves"]["egg"] = [x.replace(",", "").strip() for x in egg_moves.group(1).split(", ") if
+                                                x.replace(",", "")]
 
     def cleanup(self):
         util.clean_object(self.output_data["Abilities"])
