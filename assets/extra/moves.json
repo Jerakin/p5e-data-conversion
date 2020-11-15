@@ -85,10 +85,19 @@
       }
     }
   },
+  "Sweetkiss": {
+    "Save": "CHA"
+  },
+  "Supersonic": {
+    "Save": "WIS"
+  },
   "Bubble": {
     "atk": true
   },
   "Iron Tail": {
+    "atk": true
+  },
+  "Bone Club":{
     "atk": true
   },
   "Precipice Blades": {

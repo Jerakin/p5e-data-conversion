@@ -47,6 +47,14 @@ Paths = _Paths()
 
 # Constants
 ATTRIBUTES = ["STR", "CON", "DEX", "INT", "WIS", "CHA"]
+ATTRIBUTES_FULL = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+    "Intelligence",
+    "Wisdom",
+    "Charisma"
+]
 
 
 def __load(path):

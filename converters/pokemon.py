@@ -88,6 +88,9 @@ class Pokemon:
             self.output_data["saving_throws"].append(first_saving_throw)
             self.output_data["saving_throws"].append(csv_row[self.header.index("ST2")])
             self.output_data["saving_throws"].append(csv_row[self.header.index("ST3")])
+        for st in self.output_data["saving_throws"]:
+            if st != "" and not (st in util.ATTRIBUTES_FULL or st in util.ATTRIBUTES):
+                print(f"ValueError: Trying to add {st} to saving throw for {self.name}")
 
     def setup_moves(self, csv_row):
         self.output_data["Moves"] = {}
@@ -102,8 +105,7 @@ class Pokemon:
         lvl_moves = self.RE_LEVEL_MOVES.findall(move_text)
         if lvl_moves:
             for level, moves in lvl_moves:
-                self.output_data["Moves"]["Level"][level] = [x.replace(",", "") for x in moves.split(", ") if
-                                                                x.replace(",", "")]
+                self.output_data["Moves"]["Level"][level] = [x.strip() for x in moves.split(",") if x.strip()]
         tm_moves = self.RE_TM_MOVES.search(move_text)
         if tm_moves:
             if "EVERY TM" in move_text:
@@ -113,8 +115,7 @@ class Pokemon:
 
         egg_moves = self.RE_EGG_MOVES.search(move_text)
         if egg_moves:
-            self.output_data["Moves"]["egg"] = [x.replace(",", "").strip() for x in egg_moves.group(1).split(", ") if
-                                                x.replace(",", "")]
+            self.output_data["Moves"]["egg"] = [x.strip() for x in egg_moves.group(1).split(",") if x.strip()]
 
     def cleanup(self):
         util.clean_object(self.output_data["Abilities"])
