@@ -176,6 +176,8 @@ class Pokemon:
 
     def save(self):
         name = clean_file_name(self.name)
+        if not util.Paths.POKEMON_OUTPUT.exists():
+            util.Paths.POKEMON_OUTPUT.mkdir()
         with (util.Paths.POKEMON_OUTPUT / (name + ".json")).open("w", encoding="utf-8") as fp:
             final_output_data = self.output_data
             if hasattr(self, "variant_data"):
