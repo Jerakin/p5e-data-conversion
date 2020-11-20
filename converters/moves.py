@@ -11,7 +11,7 @@ except ModuleNotFoundError:
 
 POKEMON = "Pokémon"
 DEFAULT_HEADER = ("Name", "Type", "Move Power", "Move Time", "PP", "Duration", "Range", "Description",
-                  "Dmg lvl 1", "Dmg lvl 5", "Dmg lvl 10", "Dmg lvl 17")
+                  "Dmg lvl 1", "Dmg lvl 5", "Dmg lvl 10", "Dmg lvl 17", "FORMAT", "scaling")
 
 error_move = {
     "Type": "Normal",
@@ -116,6 +116,7 @@ class Move:
         self.output_data["Duration"] = util.ensure_string(csv_row[self.header.index("Duration")])
         self.output_data["Range"] = util.ensure_string(csv_row[self.header.index("Range")])
         self.output_data["Description"] = util.ensure_string(csv_row[self.header.index("Description")])
+        self.output_data["Scaling"] = util.ensure_string(csv_row[self.header.index("scaling")])
         self.setup_extra(csv_row)
         self.setup_damage(csv_row)
         if self.name in util.MERGE_MOVE_DATA:
