@@ -37,21 +37,23 @@ def save_worksheet(worksheet):
                 print("Caught unicode error")
 
 
-def get_worksheet(cred_file):
+def get_worksheet(file_or_secret):
     scope = ['https://spreadsheets.google.com/feeds',
              'https://www.googleapis.com/auth/drive']
-
-    with open(cred_file, "r") as f:
-        cred_data = json.load(f)
-        credentials = ServiceAccountCredentials.from_json_keyfile_dict(cred_data, scope)
+    if Path(file_or_secret).is_file():
+        with open(file_or_secret, "r") as f:
+            cred_data = json.load(f)
+    else:
+        cred_data = json.loads(file_or_secret)
+    credentials = ServiceAccountCredentials.from_json_keyfile_dict(cred_data, scope)
     gc = gspread.authorize(credentials)
 
     return gc.open(r"DM Pokémon Builder Gen I - VII.xlsx")
 
 
-def main(cred_file):
+def main(file_or_secret):
     logging.info("Starting downloading spreadsheets")
-    wks = get_worksheet(cred_file)
+    wks = get_worksheet(file_or_secret)
     for worksheet in wks.worksheets():
         if worksheet.title in DATA_SHEETS:
             save_worksheet(worksheet)
@@ -63,7 +65,7 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         credentials_file = sys.argv[1]
         if os.path.exists(credentials_file):
-            main(cred_file=credentials_file)
+            main(file_or_secret=credentials_file)
         else:
             print("Error: Access file not found, please provide a valid path")
     else:

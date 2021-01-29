@@ -74,20 +74,18 @@ def _run_cli():
         else:
             logging.warning("Please provide either a access file or a folder with the Download DATA sheets in")
     else:
-        argument = Path(options.token)
-        if argument.exists():
-            if argument.is_file() and argument.suffix == ".json":
-                try:
-                    _folder = fetch.main(cred_file=argument)
-                except SpreadsheetNotFound:
-                    logging.error("SpreadsheetNotFound: Could not find the spreadsheet on the service account")
-                    sys.exit(1)
-                convert_all(_folder)
+        argument = options.token
+        if Path(options.token).is_dir():
+            convert_all(argument)
+        else:
+            try:
+                _folder = fetch.main(file_or_secret=argument)
+            except SpreadsheetNotFound:
+                logging.error("SpreadsheetNotFound: Could not find the spreadsheet on the service account")
+                sys.exit(1)
+            convert_all(_folder)
 
-            elif argument.is_dir():
-                convert_all(argument)
-            else:
-                logging.error("Access file or folder not found, please provide a valid path")
+
 
     logging.info("Conversion finished")
 
