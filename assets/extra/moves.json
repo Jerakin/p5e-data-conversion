@@ -85,7 +85,7 @@
       }
     }
   },
-  "Sweetkiss": {
+  "Sweet Kiss": {
     "Save": "CHA"
   },
   "Supersonic": {
@@ -108,6 +108,9 @@
   },
   "Double Team":{
     "atk": false
+  },
+  "Wood Hammer":{
+    "atk": true
   },
   "Overheat": {
     "Save": "DEX"
