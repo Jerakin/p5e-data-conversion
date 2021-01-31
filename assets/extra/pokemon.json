@@ -6,12 +6,28 @@
         "Leer",
         "Metal Burst",
         "Scratch",
-        "Torment",
-        "Feint Attack",
-        "Scary Face"
+        "Torment"
       ],
       "Level": {
-        "6": []
+        "6": [],
+        "10": [
+          "Feint Attack",
+          "Scary Face",
+          "Metal Claw",
+          "Slash",
+          "Assurance"
+        ],
+        "14": [
+          "Metal Sound",
+          "Embargo",
+          "Iron Defense"
+        ],
+        "18": [
+          "Night Slash",
+          "Iron Head",
+          "Swords Dance",
+          "Guillotine"
+        ]
       }
     }
   },
